@@ -1,0 +1,92 @@
+<div class="min-h-screen bg-[#d1d5db] flex items-center justify-center p-4 font-sans relative overflow-hidden">
+  
+  <!-- Utility Bar -->
+  <div class="utility-bar w-full max-w-[800px] absolute top-10 flex justify-between items-center px-10 hidden md:flex">
+    <div class="utility-title text-2xl font-semibold text-[#111827]">Precision Desktop</div>
+    <div class="utility-stats flex gap-10">
+      <div class="stat-item flex flex-col">
+        <span class="stat-label text-[11px] uppercase text-[#6b7280] tracking-widest mb-1">Mode</span>
+        <span class="stat-value text-base font-semibold text-[#374151]">Standard arithmetic</span>
+      </div>
+      <div class="stat-item flex flex-col">
+        <span class="stat-label text-[11px] uppercase text-[#6b7280] tracking-widest mb-1">Precision</span>
+        <span class="stat-value text-base font-semibold text-[#374151]">12 Digits</span>
+      </div>
+      <div class="stat-item flex flex-col">
+        <span class="stat-label text-[11px] uppercase text-[#6b7280] tracking-widest mb-1">Status</span>
+        <span class="stat-value text-base font-semibold text-[#374151]">Ready</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculator Container -->
+  <div class="calc-container w-[340px] bg-[#1c1c1c] rounded-[20px] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-black">
+    <div class="brand-name text-[#666] text-[10px] uppercase tracking-[2px] mb-2 font-bold">Professional Series 400</div>
+    
+    <!-- Display Area -->
+    <div class="display-area bg-[#2a2a2a] rounded-xl p-5 mb-6 text-right border border-white/10 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
+      <div class="history-value text-[#888] text-sm h-[18px] mb-1">
+        @if (history().length > 0) {
+          {{ history()[0] }}
+        } @else if (previousValue() !== null) {
+          {{ previousValue() }} {{ operator() }}
+        }
+      </div>
+      <div class="current-value text-white text-5xl font-light tracking-tighter truncate">
+        {{ display() }}
+      </div>
+    </div>
+
+    <!-- Button Grid -->
+    <div class="grid grid-cols-4 gap-3">
+      <!-- Row 1 -->
+      <button (mousedown)="animateButton($event); onClear()" class="btn btn-gray">AC</button>
+      <button (mousedown)="animateButton($event); onToggleSign()" class="btn btn-gray">
+        <mat-icon>exposure</mat-icon>
+      </button>
+      <button (mousedown)="animateButton($event); onPercentage()" class="btn btn-gray">
+        <mat-icon>percent</mat-icon>
+      </button>
+      <button (mousedown)="animateButton($event); onOperator('÷')" class="btn btn-orange"
+              [class.ring-2]="operator() === '÷'" [class.ring-white/50]="operator() === '÷'">
+        <mat-icon>division</mat-icon>
+      </button>
+
+      <!-- Row 2 -->
+      <button (mousedown)="animateButton($event); onNumber('7')" class="btn btn-dark">7</button>
+      <button (mousedown)="animateButton($event); onNumber('8')" class="btn btn-dark">8</button>
+      <button (mousedown)="animateButton($event); onNumber('9')" class="btn btn-dark">9</button>
+      <button (mousedown)="animateButton($event); onOperator('×')" class="btn btn-orange"
+              [class.ring-2]="operator() === '×'" [class.ring-white/50]="operator() === '×'">
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <!-- Row 3 -->
+      <button (mousedown)="animateButton($event); onNumber('4')" class="btn btn-dark">4</button>
+      <button (mousedown)="animateButton($event); onNumber('5')" class="btn btn-dark">5</button>
+      <button (mousedown)="animateButton($event); onNumber('6')" class="btn btn-dark">6</button>
+      <button (mousedown)="animateButton($event); onOperator('-')" class="btn btn-orange"
+              [class.ring-2]="operator() === '-'" [class.ring-white/50]="operator() === '-'">
+        <mat-icon>remove</mat-icon>
+      </button>
+
+      <!-- Row 4 -->
+      <button (mousedown)="animateButton($event); onNumber('1')" class="btn btn-dark">1</button>
+      <button (mousedown)="animateButton($event); onNumber('2')" class="btn btn-dark">2</button>
+      <button (mousedown)="animateButton($event); onNumber('3')" class="btn btn-dark">3</button>
+      <button (mousedown)="animateButton($event); onOperator('+')" class="btn btn-orange"
+              [class.ring-2]="operator() === '+'" [class.ring-white/50]="operator() === '+'">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <!-- Row 5 -->
+      <button (mousedown)="animateButton($event); onNumber('0')" class="btn btn-dark btn-double col-span-2">
+        0
+      </button>
+      <button (mousedown)="animateButton($event); onDecimal()" class="btn btn-dark">.</button>
+      <button (mousedown)="animateButton($event); onEqual()" class="btn btn-orange">
+        <mat-icon>drag_handle</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

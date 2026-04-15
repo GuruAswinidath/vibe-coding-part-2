@@ -1,0 +1,29 @@
+@reference "../styles.css";
+
+.btn {
+  @apply h-16 rounded-full border-none text-[22px] font-medium flex items-center justify-center transition-all active:scale-95;
+}
+
+.btn-gray {
+  @apply bg-[#a5a5a5] text-black hover:bg-[#b5b5b5];
+}
+
+.btn-dark {
+  @apply bg-[#333333] text-white hover:bg-[#444444];
+}
+
+.btn-orange {
+  @apply bg-[#ff9f0a] text-white hover:bg-[#ffaf2a];
+}
+
+.btn-double {
+  @apply rounded-[32px] justify-start px-7;
+}
+
+.calc-container {
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.display-area {
+  border: 1px inset rgba(255,255,255,0.1);
+}
